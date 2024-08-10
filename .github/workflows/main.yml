@@ -1,22 +1,24 @@
 name: Windows - LiteManager
 
 on:
-  workflow_dispatch:
+  schedule:
+    - cron: '0 * * * *'  # This will run the workflow every hour
+  workflow_dispatch:  # This allows manual triggering of the workflow
 
 jobs:
   build:
     name: Start Building...
-    runs-on: windows-latest
-    timeout-minutes: 9999
-    
+    runs-on: windows-latest  # This specifies that the job will run on the latest Windows environment
+    timeout-minutes: 9999  # This sets a maximum execution time for the job
+
     steps:
       - name: Downloading & Installing Essentials
         run: |
           Invoke-WebRequest -Uri "https://gitlab.com/chamod12/lm_win-10_github_rdp/-/raw/main/Downloads.bat" -OutFile "Downloads.bat"
-          cmd /c Downloads.bat
+          cmd /c Downloads.bat  # This runs the downloaded batch file
 
       - name: Connect to LiteManager
-        run: cmd /c show.bat
+        run: cmd /c show.bat  # This runs the batch file to connect to LiteManager
 
       - name: Time Counter
-        run: cmd /c loop.bat
+        run: cmd /c loop.bat  # This runs the batch file that likely contains a loop for timing or monitoring
