@@ -2,7 +2,7 @@ name: Windows - LiteManager
 
 on:
   schedule:
-    - cron: '0 * * * *'  # This will run the workflow every hour
+    # - cron: '0 * * * *'  # This will run the workflow every hour
   workflow_dispatch:  # This allows manual triggering of the workflow
 
 jobs:
